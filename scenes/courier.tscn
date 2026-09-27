@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/courier.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/torso.svg" id="2"]
+
+[sub_resource type="CapsuleShape2D" id="TorsoShape"]
+radius=14.0
+height=38.0
+
+[sub_resource type="PhysicsMaterial" id="Material"]
+friction=0.65
+bounce=0.12
+
+[node name="Courier" type="RigidBody2D" groups=["courier"]]
+collision_layer=2
+collision_mask=1
+mass=2.8
+inertia=800.0
+physics_material_override=SubResource("Material")
+continuous_cd=2
+contact_monitor=true
+max_contacts_reported=8
+linear_damp=0.08
+angular_damp=0.8
+script=ExtResource("1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape=SubResource("TorsoShape")
+
+[node name="TorsoSprite" type="Sprite2D" parent="."]
+position=Vector2(0, 3)
+texture=ExtResource("2")
